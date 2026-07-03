@@ -26,13 +26,13 @@ export function AccountList({
   if (isError)
     return <ErrorState message={errorMessage ?? "Couldn't load accounts."} />;
 
-  const filtered = (accounts ?? []).filter((account) => {
-    const term = searchTerm.trim().toLowerCase();
+  const filtered = (accounts ?? [])?.filter((account) => {
+    const term = searchTerm?.trim()?.toLowerCase();
     if (!term) return true;
     return (
-      account.customerName.toLowerCase().includes(term) ||
-      account.accountNumber.toLowerCase().includes(term) ||
-      account.email.toLowerCase().includes(term)
+      account?.customerName?.toLowerCase()?.includes(term) ||
+      account?.accountNumber?.toLowerCase()?.includes(term) ||
+      account?.email?.toLowerCase()?.includes(term)
     );
   });
 
@@ -52,7 +52,7 @@ export function AccountList({
 
   return (
     <div className="flex flex-col gap-3">
-      {filtered.map((account) => (
+      {filtered?.map((account) => (
         <AccountCard key={account.accountNumber} account={account} />
       ))}
     </div>

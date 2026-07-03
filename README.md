@@ -46,7 +46,7 @@ builder.Services.AddCors(options =>
 app.UseCors("Frontend");
 ```
 
-Place `app.UseCors("Frontend")` after `app.UseHttpsRedirection()` and before `app.UseAuthorization()`.
+Place `app.UseCors("Frontend")` before `app.UseHttpsRedirection()` and before `app.UseAuthorization()`.
 
 ## API coverage
 
