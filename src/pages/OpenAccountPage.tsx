@@ -3,7 +3,9 @@ import { OpenAccountForm } from "@/components/forms/OpenAccountForm";
 import { useBankName } from "@/hooks/useAccount";
 
 export function OpenAccountPage() {
-  const { data: bankName } = useBankName();
+  const { data } = useBankName();
+  const bankName = data?.bankName;
+
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-6">
       <div>

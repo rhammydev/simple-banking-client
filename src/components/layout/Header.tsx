@@ -10,7 +10,10 @@ const navItems = [
 ];
 
 export function Header() {
-  const { data: bankName } = useBankName();
+  const { data } = useBankName();
+  const bankName = data?.bankName;
+  const description = data?.description;
+
   return (
     <header className="sticky top-0 z-40 border-b-4 border-gold bg-navy-gradient">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -49,9 +52,11 @@ export function Header() {
           <div className="leading-tight">
             <p className="font-display text-sm font-semibold tracking-[4px] text-gold uppercase">
               {bankName || "PRESTIGE"}
+              {/* Akanbi Digital Solutions */}
             </p>
             <p className="text-[10px] tracking-[2px] text-white/50">
-              BANKING SUITE · NIGERIA
+              {description || "BANKING SUITE · NIGERIA"}
+              {/* Simple Digital banking with ADS */}
             </p>
           </div>
         </Link>

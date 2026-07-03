@@ -54,5 +54,9 @@ export const accountsApi = {
   getBalance: (accountNumber: string) =>
     unwrap<Balance>(apiClient.get(`/Account/balance/${accountNumber}`)),
 
-  getBankName: () => unwrap<string>(apiClient.get("/Account/bank-name")),
+  getBankName: () =>
+    unwrap<{
+      bankName: string;
+      description: string;
+    }>(apiClient.get("/Account/bank-name")),
 };
