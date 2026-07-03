@@ -11,7 +11,9 @@ import type {
   WithdrawRequest,
 } from "@/types/banking";
 
-async function unwrap<T>(promise: Promise<{ data: ApiResponse<T> }>): Promise<T> {
+async function unwrap<T>(
+  promise: Promise<{ data: ApiResponse<T> }>,
+): Promise<T> {
   const { data } = await promise;
   if (!data.isSuccess) throw new Error(data.message);
   return data.data;
@@ -28,12 +30,17 @@ export const accountsApi = {
     unwrap<Account>(apiClient.put(`/Account/${accountNumber}`, payload)),
 
   deleteAccount: (accountNumber: string) =>
-    unwrap<boolean>(apiClient.delete(`/Account/delete-account/${accountNumber}`)),
+    unwrap<boolean>(
+      apiClient.delete(`/Account/delete-account/${accountNumber}`),
+    ),
 
   reactivateAccount: (accountNumber: string) =>
-    unwrap<boolean>(apiClient.post(`/Account/activate-account/${accountNumber}`)),
+    unwrap<boolean>(
+      apiClient.post(`/Account/activate-account/${accountNumber}`),
+    ),
 
-  getAllAccounts: () => unwrap<Account[]>(apiClient.get("/Account/all-accounts")),
+  getAllAccounts: () =>
+    unwrap<Account[]>(apiClient.get("/Account/all-accounts")),
 
   deposit: (payload: DepositRequest) =>
     unwrap<number>(apiClient.post("/Account/deposit", payload)),
@@ -46,4 +53,6 @@ export const accountsApi = {
 
   getBalance: (accountNumber: string) =>
     unwrap<Balance>(apiClient.get(`/Account/balance/${accountNumber}`)),
+
+  getBankName: () => unwrap<string>(apiClient.get("/Account/bank-name")),
 };

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { LayoutDashboard, PlusCircle, ArrowLeftRight } from "lucide-react";
 import clsx from "clsx";
+import { useBankName } from "@/hooks/useAccount";
 
 const navItems = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -9,19 +10,49 @@ const navItems = [
 ];
 
 export function Header() {
+  const { data: bankName } = useBankName();
   return (
     <header className="sticky top-0 z-40 border-b-4 border-gold bg-navy-gradient">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-3">
-          <svg width="34" height="34" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="44" height="44" rx="12" stroke="#D4A853" strokeWidth="2.5" />
-            <path d="M14 32V16L24 23L34 16V32" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            width="34"
+            height="34"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              x="2"
+              y="2"
+              width="44"
+              height="44"
+              rx="12"
+              stroke="#D4A853"
+              strokeWidth="2.5"
+            />
+            <path
+              d="M14 32V16L24 23L34 16V32"
+              stroke="#FFFFFF"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
             <circle cx="24" cy="32" r="3" fill="#D4A853" />
-            <path d="M24 19L24 23" stroke="#D4A853" strokeWidth="2" strokeLinecap="round" />
+            <path
+              d="M24 19L24 23"
+              stroke="#D4A853"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
           </svg>
           <div className="leading-tight">
-            <p className="font-display text-sm font-semibold tracking-[4px] text-gold">PRESTIGE</p>
-            <p className="text-[10px] tracking-[2px] text-white/50">BANKING SUITE · NIGERIA</p>
+            <p className="font-display text-sm font-semibold tracking-[4px] text-gold uppercase">
+              {bankName || "PRESTIGE"}
+            </p>
+            <p className="text-[10px] tracking-[2px] text-white/50">
+              BANKING SUITE · NIGERIA
+            </p>
           </div>
         </Link>
 

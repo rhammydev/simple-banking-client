@@ -17,3 +17,11 @@ export function useAccountBalance(accountNumber: string) {
     enabled: Boolean(accountNumber),
   });
 }
+
+export function useBankName() {
+  return useQuery({
+    queryKey: ["bankName"],
+    queryFn: () => accountsApi.getBankName(),
+    enabled: true,
+  });
+}
