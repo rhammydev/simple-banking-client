@@ -52,11 +52,9 @@ export function Header() {
           <div className="leading-tight">
             <p className="font-display text-sm font-semibold tracking-[4px] text-gold uppercase">
               {bankName || "PRESTIGE"}
-              {/* Akanbi Digital Solutions */}
             </p>
             <p className="text-[10px] tracking-[2px] text-white/50">
               {description || "BANKING SUITE · NIGERIA"}
-              {/* Simple Digital banking with ADS */}
             </p>
           </div>
         </Link>
