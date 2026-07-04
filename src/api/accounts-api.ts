@@ -5,11 +5,17 @@ import type {
   Balance,
   CreateAccountRequest,
   DepositRequest,
+  Statement,
   TransferRequest,
   TransferSummary,
   UpdateAccountRequest,
   WithdrawRequest,
 } from "@/types/banking";
+
+export interface StatementDateRange {
+  fromDate?: string; // yyyy-MM-dd
+  toDate?: string; // yyyy-MM-dd
+}
 
 async function unwrap<T>(
   promise: Promise<{ data: ApiResponse<T> }>,
@@ -59,4 +65,14 @@ export const accountsApi = {
       bankName: string;
       description: string;
     }>(apiClient.get("/Account/bank-name")),
+
+  getStatement: (accountNumber: string, range: StatementDateRange = {}) =>
+    unwrap<Statement>(
+      apiClient.get(`/Account/statement/${accountNumber}`, {
+        params: {
+          fromDate: range.fromDate || undefined,
+          toDate: range.toDate || undefined,
+        },
+      }),
+    ),
 };

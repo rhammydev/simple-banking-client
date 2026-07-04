@@ -4,6 +4,7 @@ import { DashboardPage } from "@/pages/DashboardPage";
 import { OpenAccountPage } from "@/pages/OpenAccountPage";
 import { TransferPage } from "@/pages/TransferPage";
 import { AccountDetailPage } from "@/pages/AccountDetailPage";
+import { StatementPage } from "@/pages/StatementPage";
 
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -29,11 +30,18 @@ const accountDetailRoute = createRoute({
   component: AccountDetailPage,
 });
 
+const statementRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/accounts/$accountNumber/statement",
+  component: StatementPage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   openAccountRoute,
   transferRoute,
   accountDetailRoute,
+  statementRoute,
 ]);
 
 export const router = createRouter({ routeTree, defaultPreload: "intent" });

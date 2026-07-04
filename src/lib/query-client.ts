@@ -17,6 +17,16 @@ export const queryClient = new QueryClient({
 export const accountKeys = {
   all: ["accounts"] as const,
   lists: () => [...accountKeys.all, "list"] as const,
-  detail: (accountNumber: string) => [...accountKeys.all, "detail", accountNumber] as const,
-  balance: (accountNumber: string) => [...accountKeys.all, "balance", accountNumber] as const,
+  detail: (accountNumber: string) =>
+    [...accountKeys.all, "detail", accountNumber] as const,
+  balance: (accountNumber: string) =>
+    [...accountKeys.all, "balance", accountNumber] as const,
+  statement: (accountNumber: string, fromDate?: string, toDate?: string) =>
+    [
+      ...accountKeys.all,
+      "statement",
+      accountNumber,
+      fromDate ?? "",
+      toDate ?? "",
+    ] as const,
 };

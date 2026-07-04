@@ -19,6 +19,13 @@ export function formatDate(isoDate: string): string {
   });
 }
 
+const CREDIT_TRANSACTION_TYPES = new Set(["deposit", "credit"]);
+
+/** Mirrors BankingService.CreditTransactionTypes on the backend. */
+export function isCreditTransaction(transactionType: string): boolean {
+  return CREDIT_TRANSACTION_TYPES.has(transactionType.toLowerCase());
+}
+
 export function initialsOf(name: string): string {
   return name
     ?.trim()

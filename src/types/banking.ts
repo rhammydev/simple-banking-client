@@ -57,6 +57,30 @@ export interface WithdrawRequest {
   amount: number;
 }
 
+// Mirrors SimpleBankingAPI.DTOs.Response.TransactionResponse
+export interface Transaction {
+  transactionType: string; // "Deposit" | "Withdrawal" | "Debit" | "Credit"
+  accountNumber: string;
+  amount: number;
+  naration: string;
+  reference: string;
+  createdAt: string;
+}
+
+// Mirrors SimpleBankingAPI.DTOs.Response.StatementResponse
+export interface Statement {
+  accountNumber: string;
+  customerName: string;
+  fromDate: string | null;
+  toDate: string | null;
+  openingBalance: number;
+  closingBalance: number;
+  totalCredits: number;
+  totalDebits: number;
+  transactionCount: number;
+  transactions: Transaction[];
+}
+
 // Mirrors SimpleBankingAPI.DTOs.Request.TransferRequest
 export interface TransferRequest {
   senderAccountNumber: string;
